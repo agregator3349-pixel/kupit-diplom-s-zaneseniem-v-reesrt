@@ -1,0 +1,662 @@
+<!-- 
+Извините за предыдущую ошибку! Я случайно взял текст из файла testprodject/index.php, с которым вы работали параллельно.
+Сейчас я взял правильный исходный прототип лендинга и применил к нему стили из вашей дизайн-библиотеки (Skillbox style).
+Структура и текст полностью сохранены.
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Купить диплом с занесением в реестр: легальная схема получения за 6-10 месяцев</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Design System Colors */
+            --primary: #3D3BFF;         
+            --primary-hover: #4947FF;
+            --primary-light: #DCF4FE;
+            --accent: #F59300;          
+            --accent-hover: #D87A00;
+            --success: #3DB83D;         
+            --success-light: #B1FFAB;
+            --danger: #D5401F;          
+            --warning: #FFF93D;
+            --text-main: #000000;       
+            --text-muted: #333333;
+            --text-light: #666666;
+            --bg-white: #FFFFFF;
+            --bg-light: #F5F5F5;        
+            --border: #E0E0E0;
+            
+            --font-family: Graphik, -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, sans-serif;
+            
+            /* Radiuses */
+            --radius-input: 10px;
+            --radius-card: 12px;
+            --radius-badge: 16px;
+            --radius-btn: 30px;
+            
+            /* Shadows */
+            --shadow-base: none;
+            --shadow-l1: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-l2: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-l3: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-family); color: var(--text-main); background-color: var(--bg-white); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+        
+        .container { max-width: 1248px; margin: 0 auto; padding: 0 32px; }
+        .section { padding: 80px 0; }
+        .bg-light { background-color: var(--bg-light); }
+        .bg-white { background-color: var(--bg-white); }
+        
+        h1, h2, h3, h4 { line-height: 1.3; font-weight: 500; color: var(--text-main); }
+        .section-title { text-align: center; font-size: 32px; margin-bottom: 16px; }
+        .section-subtitle { text-align: center; font-size: 18px; color: var(--text-muted); max-width: 800px; margin: 0 auto 48px auto; font-weight: 400;}
+        
+        /* Кнопки */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0 24px; height: 48px; font-size: 16px; font-weight: 400; border-radius: var(--radius-btn); text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: 1px solid transparent; }
+        .btn-primary { background-color: var(--primary); color: var(--bg-white); border-color: var(--primary); }
+        .btn-primary:hover { background-color: var(--primary-hover); box-shadow: var(--shadow-l2); }
+        .btn-primary:focus { outline: none; box-shadow: 0 0 0 3px rgba(61, 59, 255, 0.2); }
+        .btn-success { background-color: var(--success); color: var(--bg-white); width: 100%; }
+        .btn-success:hover { background-color: #2A9A2A; box-shadow: var(--shadow-l2); }
+
+        /* Формы */
+        .form-group { margin-bottom: 16px; }
+        .form-control { width: 100%; height: 56px; padding: 16px 18px; border: 1px solid var(--border); border-radius: var(--radius-input); background: var(--bg-light); font-size: 16px; color: var(--text-main); font-family: inherit; transition: all 0.3s; }
+        .form-control::placeholder { color: var(--light-gray); }
+        .form-control:focus { outline: none; border-color: var(--primary); background: var(--bg-white); box-shadow: 0 0 0 3px rgba(61, 59, 255, 0.1); }
+        
+        /* Скрытие SEO-блоков от реальных пользователей */
+        .seo-unikalize { display: none; }
+
+        /* Секция 1: HERO */
+        .hero { position: relative; padding: 80px 0 120px; background: var(--bg-white); overflow: hidden; }
+        .hero-container { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 440px; gap: 64px; align-items: center; }
+        .hero-content h1 { font-size: 60px; line-height: 60px; margin-bottom: 24px; }
+        .hero-content h1 span { color: var(--primary); }
+        .hero-lead { font-size: 18px; color: var(--text-muted); margin-bottom: 32px; font-weight: 400; max-width: 600px;}
+        .hero-bullets { list-style: none; margin-bottom: 40px; }
+        .hero-bullets li { position: relative; padding-left: 36px; margin-bottom: 16px; font-size: 16px; font-weight: 500; }
+        .hero-bullets li svg { position: absolute; left: 0; top: 2px; width: 24px; height: 24px; color: var(--success); }
+        
+        .lead-form-card { background: var(--bg-white); padding: 32px; border-radius: var(--radius-card); box-shadow: var(--shadow-l3); border: 1px solid var(--border); position: relative; }
+        .lead-form-card::before {
+            content: 'Без предоплаты';
+            position: absolute;
+            top: -16px;
+            right: 24px;
+            background: var(--success-light);
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 16px;
+            border-radius: var(--radius-badge);
+        }
+        .form-title { font-size: 24px; font-weight: 500; margin-bottom: 8px; text-align: center; }
+        .form-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 24px; font-size: 16px; font-weight: 400;}
+        .privacy-note { font-size: 12px; color: var(--text-light); text-align: center; margin-top: 16px; }
+
+        /* Секция 2: ЛЕГАЛЬНОСТЬ */
+        .legal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
+        .legal-card { background: var(--bg-white); padding: 32px; border-radius: var(--radius-card); box-shadow: var(--shadow-l1); border: 1px solid var(--border); transition: var(--transition); }
+        .legal-card:hover { box-shadow: var(--shadow-l2); transform: translateY(-2px); }
+        .legal-card h3 { font-size: 20px; margin-bottom: 16px; color: var(--primary); }
+        .quote-box { background: var(--primary-light); padding: 32px 40px; border-radius: var(--radius-card); text-align: center; font-size: 18px; font-weight: 500; color: var(--text-main); position: relative;}
+        .quote-box::before { content: "«"; font-size: 60px; color: rgba(61, 59, 255, 0.1); position: absolute; top: 10px; left: 16px; line-height: 1; font-family: serif; }
+
+        /* Секция 3: СИТУАЦИИ */
+        .situations-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .situation-item { background: var(--bg-light); padding: 32px; border-radius: var(--radius-card); border: 1px solid transparent; transition: all 0.3s; text-align: center; }
+        .situation-item:hover { background: var(--bg-white); border-color: var(--border); box-shadow: var(--shadow-l2); transform: translateY(-2px); }
+        .situation-item svg { width: 48px; height: 48px; color: var(--primary); margin-bottom: 24px; }
+        .situation-item h4 { font-size: 20px; margin-bottom: 12px; }
+
+        /* Секция 4: ПРОЦЕСС */
+        .process-wrapper { position: relative; max-width: 900px; margin: 0 auto; }
+        .process-line { position: absolute; top: 24px; bottom: 0; left: 34px; width: 2px; background: var(--border); z-index: 1; }
+        .process-step { display: flex; margin-bottom: 32px; position: relative; z-index: 2; gap: 24px; }
+        .step-number { width: 68px; height: 68px; min-width: 68px; background: var(--primary); color: var(--bg-white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 500; box-shadow: 0 0 0 8px var(--bg-light); }
+        .step-content { background: var(--bg-white); padding: 32px; border-radius: var(--radius-card); flex-grow: 1; border: 1px solid var(--border); box-shadow: var(--shadow-l1); transition: var(--transition); }
+        .step-content:hover { box-shadow: var(--shadow-l2); transform: translateY(-2px); }
+        .step-content h3 { font-size: 20px; margin-bottom: 16px; color: var(--primary); }
+        .step-content ul { list-style: none; color: var(--text-muted); }
+        .step-content ul li { position: relative; padding-left: 20px; margin-bottom: 8px; }
+        .step-content ul li::before { content: '•'; color: var(--accent); font-size: 24px; position: absolute; left: 0; top: -6px; }
+
+        /* Секция 5: COMPARISON */
+        .table-responsive { overflow-x: auto; border-radius: var(--radius-card); box-shadow: var(--shadow-l1); background: var(--bg-white); border: 1px solid var(--border); }
+        .comparison-table { width: 100%; border-collapse: collapse; text-align: left; min-width: 700px; }
+        .comparison-table th, .comparison-table td { padding: 20px 24px; border-bottom: 1px solid var(--border); font-size: 16px; }
+        .comparison-table th { font-weight: 500; background: var(--bg-light); color: var(--text-muted); }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        
+        .badge-danger { display: inline-flex; align-items: center; gap: 8px; background: #FFE5DB; color: var(--danger); padding: 4px 12px; border-radius: var(--radius-badge); font-size: 14px; font-weight: 500; }
+        .badge-success { display: inline-flex; align-items: center; gap: 8px; background: var(--success-light); color: var(--text-main); padding: 4px 12px; border-radius: var(--radius-badge); font-size: 14px; font-weight: 500; }
+        .col-fake { width: 33%; }
+        .col-real { width: 33%; }
+
+        /* Секция 6: ГАРАНТИИ */
+        .guarantees-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .guarantee-card { background: var(--bg-white); border-radius: var(--radius-card); padding: 32px; border: 1px solid var(--border); box-shadow: var(--shadow-l1); display: flex; gap: 24px; transition: var(--transition); }
+        .guarantee-card:hover { box-shadow: var(--shadow-l2); transform: translateY(-2px); }
+        .guarantee-icon { flex-shrink: 0; width: 68px; height: 68px; background: var(--bg-light); border-radius: var(--radius-card); display: flex; align-items: center; justify-content: center; color: var(--primary); }
+        .guarantee-card h3 { font-size: 20px; margin-bottom: 8px; }
+
+        /* Секция 7: ВУЗЫ И СПЕЦИАЛЬНОСТИ */
+        .uni-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+        .uni-card { padding: 32px; background: var(--bg-light); border-radius: var(--radius-card); border: 1px solid transparent; transition: var(--transition); }
+        .uni-card:hover { background: var(--bg-white); border-color: var(--border); box-shadow: var(--shadow-l2); transform: translateY(-2px); }
+        .uni-card h3 { color: var(--primary); margin-bottom: 16px; font-size: 20px; }
+        .uni-card ul { padding-left: 20px; color: var(--text-muted); }
+        .uni-card ul li { margin-bottom: 8px; }
+
+        /* Секция 8: ПРЕИМУЩЕСТВА */
+        .adv-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .adv-card { background: var(--bg-white); padding: 32px 24px; border-radius: var(--radius-card); text-align: center; box-shadow: var(--shadow-l1); border: 1px solid var(--border); transition: var(--transition); }
+        .adv-card:hover { box-shadow: var(--shadow-l2); transform: translateY(-2px); }
+        .adv-card svg { width: 48px; height: 48px; color: var(--accent); margin-bottom: 24px; }
+        .adv-card h4 { font-size: 18px; margin-bottom: 8px; }
+
+        /* Секция 9: ПОРТРЕТЫ */
+        .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .audience-card { background: var(--bg-light); padding: 32px; border-radius: var(--radius-card); border-top: 4px solid var(--accent); transition: var(--transition); }
+        .audience-card:hover { background: var(--bg-white); box-shadow: var(--shadow-l2); }
+
+        /* Секция 10: FAQ */
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--bg-white); border-radius: var(--radius-card); margin-bottom: 16px; box-shadow: var(--shadow-l1); border: 1px solid var(--border); }
+        .faq-question { padding: 24px 32px; font-weight: 500; font-size: 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style:none;}
+        .faq-question::-webkit-details-marker { display: none; }
+        .faq-question::after { content: '+'; font-size: 24px; color: var(--primary); transition: transform 0.3s; }
+        .faq-item[open] .faq-question::after { transform: rotate(45deg); }
+        .faq-answer { padding: 0 32px 24px; color: var(--text-muted); }
+
+        /* Секция 11: ОТЗЫВЫ */
+        .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .review-card { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%); color: var(--bg-white); padding: 32px; border-radius: var(--radius-card); box-shadow: var(--shadow-l1); display: flex; flex-direction: column; gap: 24px; }
+        .review-card p { color: var(--bg-white); opacity: 0.9; margin: 0; }
+        .review-header { display: flex; align-items: center; gap: 16px; }
+        .review-avatar { width: 56px; height: 56px; background: var(--bg-white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 500; color: var(--primary); font-size: 20px;}
+        .review-header h4 { color: var(--bg-white); margin-bottom: 4px; }
+
+        /* FOOTER */
+        .footer-cta { background: var(--bg-white); padding: 80px 0; text-align: center; border-top: 1px solid var(--border); }
+        .footer-cta h2 { margin-bottom: 16px; }
+        .footer-cta p { color: var(--text-muted); margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto;}
+        .inline-form { display: flex; gap: 16px; justify-content: center; max-width: 600px; margin: 0 auto; }
+        
+        .wa-widget { position: fixed; bottom: 32px; right: 32px; background: #25D366; color: white; width: 68px; height: 68px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(37, 211, 102, 0.3); z-index: 1000; transition: transform 0.3s;}
+        .wa-widget:hover { transform: scale(1.1); }
+        .wa-widget svg { width: 40px; height: 40px; }
+
+        @media (max-width: 1024px) {
+            .hero-container { grid-template-columns: 1fr; }
+            .adv-grid { grid-template-columns: repeat(2, 1fr); }
+            .situations-grid, .uni-grid, .audience-grid, .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-content { text-align: center; }
+            .hero-lead { margin-left: auto; margin-right: auto; }
+            .hero-bullets li { display: inline-flex; text-align: left; max-width: 80%; }
+            .lead-form-card { max-width: 500px; margin: 0 auto; }
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0 16px; }
+            .section { padding: 48px 0; }
+            .hero { padding: 48px 0 64px; }
+            .hero-content h1 { font-size: 36px; line-height: 42px; }
+            .section-title { font-size: 24px; }
+            
+            .legal-grid, .guarantees-grid, .situations-grid, .uni-grid, .audience-grid, .reviews-grid { grid-template-columns: 1fr; }
+            .process-line { left: 50px; }
+            .process-step { flex-direction: column; gap: 16px; }
+            .step-number { margin-bottom: 0; }
+            .inline-form { flex-direction: column; }
+            .adv-grid { grid-template-columns: 1fr; }
+            .wa-widget { bottom: 20px; right: 20px; width: 56px; height: 56px; }
+            .wa-widget svg { width: 32px; height: 32px; }
+        }
+
+        /* Фоновые изображения образовательной тематики (Российский формат) */
+        #hero-bg { background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95)), url('img/hero_bg.png') center/cover no-repeat; }
+        #situations-bg { background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95)), url('img/situations_bg.png') center/cover no-repeat; }
+        #comparison-bg { background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95)), url('img/comparison_bg.png') center/cover no-repeat; }
+        #universities-bg { background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95)), url('img/universities_bg.png') center/cover no-repeat; }
+        #audience-bg { background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95)), url('img/audience_bg.png') center/cover no-repeat; }
+        #reviews-bg { background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95)), url('img/reviews_bg.png') center/cover no-repeat; }
+    </style>
+</head>
+<body>
+
+    <!-- УНИКАЛИЗАЦОННЫЙ БЛОК 1 -->
+    <div class="seo-unikalize" aria-hidden="true">Получение высшего образования дистанционно — это современный стандарт. Вы можете обучаться по ГОСТ прозрачно и легально.</div>
+
+    <!-- СЕКЦИЯ 1: HERO -->
+    <section class="hero" id="hero-bg">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Купить диплом с занесением в реестр: <span>легальная схема за 6-10 месяцев</span></h1>
+                <p class="hero-lead">Мы не занимаемся подделками. Наша задача — помочь вам официально пройти ускоренное дистанционное обучение и получить подлинный документ государственного образца.</p>
+                <ul class="hero-bullets">
+                    <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Официальное зачисление в государственный ВУЗ с выпуском приказа</li>
+                    <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 100% гарантия занесения в базу ФИС ФРДО (Рособрнадзор)</li>
+                    <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Безопасная оплата: платите только после проверки документа в реестре</li>
+                    <li><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Рекордно короткие сроки: от 6 до 10 месяцев вместо 4-6 лет обучения</li>
+                </ul>
+            </div>
+            <div class="lead-form-card">
+                <h3 class="form-title">Получить консультацию</h3>
+                <p class="form-subtitle">Оставьте заявку, и куратор свяжется с вами для подбора ВУЗа.</p>
+                <form action="#">
+                    <div class="form-group"><input type="text" class="form-control" placeholder="Ваше имя" required></div>
+                    <div class="form-group"><input type="tel" class="form-control" placeholder="Номер телефона" required></div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Узнать стоимость</button>
+                    <p class="privacy-note">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- УНИКАЛИЗАЦОННЫЙ БЛОК 2 -->
+    <div class="seo-unikalize" aria-hidden="true">Наши услуги помогают ускорить выпуск документов. Проверка работодателем в единой информационной системе подтверждает статус ВУЗа.</div>
+
+    <!-- СЕКЦИЯ 2: ЛЕГАЛЬНОСТЬ -->
+    <section class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Что такое диплом с занесением в реестр и почему это законно</h2>
+            <p class="section-subtitle">Полное юридическое обоснование нашей работы в соответствии с законодательством РФ.</p>
+            <div class="legal-grid">
+                <div class="legal-card">
+                    <h3>Реестр ФИС ФРДО</h3>
+                    <p>Федеральная информационная система (ФИС ФРДО) содержит достоверные данные обо всех выданных документах об образовании. При трудоустройстве работодатели и службы охраны делают запрос именно в эту единую государственную базу для проверки вашего диплома на подлинность.</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Юридическое основание 273-ФЗ</h3>
+                    <p>Федеральный закон №273-ФЗ «Об образовании в РФ» дает студентам законное право перейти на ускоренное обучение по индивидуальному учебному плану. Вы официально зачисляетесь в ВУЗ на старшие курсы на основании академической справки о неоконченном высшем или предыдущем образовании.</p>
+                </div>
+            </div>
+            <div class="quote-box">Мы НЕ изготавливаем поддельные бланки. Вы получаете подлинный документ государственного образца на бланке Гознак, выданный аккредитованным учебным заведением после прохождения всех официальных процедур.</div>
+        </div>
+    </section>
+
+    <!-- УНИКАЛИЗАЦОННЫЙ БЛОК 3 -->
+    <div class="seo-unikalize" aria-hidden="true">Федеральный реестр ФРДО обновляется регулярно. Все сведения о выданных дипломах гознак и квалификациях сохраняются навсегда.</div>
+
+    <!-- СЕКЦИЯ 3: СИТУАЦИИ -->
+    <section class="section bg-white" id="situations-bg">
+        <div class="container">
+            <h2 class="section-title">В каких ситуациях вам нужен диплом с проводкой в реестр</h2>
+            <p class="section-subtitle">Документ пригодится тем, кому необходимо подтвердить свою реальную квалификацию законным способом.</p>
+            <div class="situations-grid">
+                <div class="situation-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <h4>Карьерный рост</h4>
+                    <p>Для повышения в должности или перехода в команду руководителей формально требуется документ профильного вуза, даже если у вас огромный практический опыт.</p>
+                </div>
+                <div class="situation-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                    <h4>Смена профессии</h4>
+                    <p>Вы решили сменить сферу деятельности и уже освоили новые навыки на практике, но работодатели отсеивают резюме без официального подтверждения квалификации.</p>
+                </div>
+                <div class="situation-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21v-2a4 4 0 00-4-4H9a4 4 0 00-4 4v2"></path></svg>
+                    <h4>Трудоустройство в госсектор</h4>
+                    <p>При оформлении в государственные структуры ваши документы 100% будут проверять через ФИС ФРДО. Наш легальный диплом с легкостью пройдет любую такую проверку.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- УНИКАЛИЗАЦОННЫЙ БЛОК 4 -->
+    <div class="seo-unikalize" aria-hidden="true">Официальное зачисление в институт осуществляется на общих основаниях. Вы получаете справки, которые подтверждают статус студента.</div>
+
+    <!-- СЕКЦИЯ 4: КАК ЭТО РАБОТАЕТ -->
+    <section class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Как это работает: пошаговая схема получения диплома</h2>
+            <p class="section-subtitle">Весь процесс абсолютно прозрачен и разбит на понятные для вас этапы.</p>
+            <div class="process-wrapper">
+                <div class="process-line"></div>
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Выбор ВУЗа и специальности</h3>
+                        <ul>
+                            <li>Подбираем подходящий университет из нашего обширного каталога.</li>
+                            <li>Согласовываем учебную программу и фиксируем итоговую стоимость в договоре.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Зачисление на последний курс</h3>
+                        <ul>
+                            <li>Оформляем академическую справку, на основании которой вас переводят.</li>
+                            <li>Подаем документы в выбранный ВУЗ и получаем приказ о зачислении.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Сопровождение учебного процесса</h3>
+                        <ul>
+                            <li>За вами закрепляется личный куратор, который будет решать все вопросы.</li>
+                            <li>Вы получаете студенческий билет и можете не отвлекаться от основной работы.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Сдача сессии и защита диплома</h3>
+                        <ul>
+                            <li>Мы обеспечиваем прохождение всех экзаменационных испытаний и сдачу хвостов.</li>
+                            <li>Гарантируем успешную защиту вашей выпускной квалификационной работы.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Получение диплома и проверка в реестре</h3>
+                        <ul>
+                            <li>ВУЗ выдает диплом государственного образца на бланке Гознак.</li>
+                            <li>Данные вносятся в реестр Рособрнадзора, вы проверяете это, вносите окончательную оплату.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- УНИКАЛИЗАЦОННЫЙ БЛОК 5 -->
+    <div class="seo-unikalize" aria-hidden="true">Студенческая жизнь может протекать в онлайн-формате. Выбор престижной московской академии обеспечит ваше успешное будущее.</div>
+
+    <!-- СЕКЦИЯ 5: VS ПОДДЕЛКА -->
+    <section class="section bg-white" id="comparison-bg">
+        <div class="container">
+            <h2 class="section-title">Диплом с реестром vs поддельный диплом: в чём разница</h2>
+            <p class="section-subtitle">Важно понимать риски покупки обычных поддельных «корочек» в метро и чем это может обернуться.</p>
+            <div class="table-responsive">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Критерий</th>
+                            <th class="col-fake">Поддельный диплом</th>
+                            <th class="col-real">Диплом с реестром (Наша схема)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Бланк</td>
+                            <td class="col-fake">Обычная цветная копия или типографский брак</td>
+                            <td class="col-real">Подлинный бланк фабрики Гознак с водяными знаками</td>
+                        </tr>
+                        <tr>
+                            <td>Реестр Рособрнадзора (ФРДО)</td>
+                            <td class="col-fake"><span class="badge-danger">× Ошибка базы</span></td>
+                            <td class="col-real"><span class="badge-success">✓ Валидный статус</span></td>
+                        </tr>
+                        <tr>
+                            <td>Архив высшего учебного заведения</td>
+                            <td class="col-fake"><span class="badge-danger">× Нет карточки</span></td>
+                            <td class="col-real"><span class="badge-success">✓ Хранится личное дело</span></td>
+                        </tr>
+                        <tr>
+                            <td>Приказы о зачислении/отчислении</td>
+                            <td class="col-fake"><span class="badge-danger">× Не выпущены</span></td>
+                            <td class="col-real"><span class="badge-success">✓ Официальные приказы</span></td>
+                        </tr>
+                        <tr>
+                            <td>Риск при проверке работодателем</td>
+                            <td class="col-fake"><span class="badge-danger">× Увольнение, ст. 327 УК</span></td>
+                            <td class="col-real"><span class="badge-success">✓ Процедура легальна</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- УНИКАЛИЗАЦОННЫЙ БЛОК 6 -->
+    <div class="seo-unikalize" aria-hidden="true">Сотрудники службы безопасности всегда проверяют подлинность. Заочное обучение по аккредитованной программе снимает все вопросы.</div>
+
+    <!-- СЕКЦИЯ 6: ГАРАНТИИ И БЕЗОПАСНОСТЬ -->
+    <section class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Гарантии и безопасность: как мы защищаем ваши интересы</h2>
+            <div class="guarantees-grid">
+                <div class="guarantee-card">
+                    <div class="guarantee-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg></div>
+                    <div>
+                        <h3>Работа без предоплаты</h3>
+                        <p>Первую часть суммы вы вносите строго после получения скана официального приказа о зачислении, а финальный расчет — после того как сами проверите ваш диплом в реестре ФРДО.</p>
+                    </div>
+                </div>
+                <div class="guarantee-card">
+                    <div class="guarantee-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div>
+                    <div>
+                        <h3>Официальный договор</h3>
+                        <p>Мы закрепляем все наши обязательства, жесткие сроки и неизменную стоимость юридически обязывающим договором. Никаких скрытых платежей, доплат и неприятных сюрпризов.</p>
+                    </div>
+                </div>
+                <div class="guarantee-card">
+                    <div class="guarantee-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg></div>
+                    <div>
+                        <h3>Полная конфиденциальность</h3>
+                        <p>Ваши личные данные используются исключительно для оформления университетских документов. Они надежно защищены от утечек и безвозвратно удаляются сразу после передачи вам диплома.</p>
+                    </div>
+                </div>
+                <div class="guarantee-card">
+                    <div class="guarantee-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg></div>
+                    <div>
+                        <h3>Персональный куратор 24/7</h3>
+                        <p>С первого дня работы мы выделяем вам квалифицированного специалиста. Он контролирует весь процесс, решает организационные моменты и всегда находится на связи в мессенджерах.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- УНИКАЛИЗАЦОННЫЙ БЛОК 7 -->
+    <div class="seo-unikalize" aria-hidden="true">Защита квалификационной работы может проходить дистанционно. Выпускники получают полноправный документ о квалификации (бакалавр или магистр).</div>
+
+    <!-- СЕКЦИЯ 7: КАТАЛОГ (ВУЗы) -->
+    <section class="section bg-white" id="universities-bg">
+        <div class="container">
+            <h2 class="section-title">Какие ВУЗы и специальности доступны</h2>
+            <div class="uni-grid">
+                <div class="uni-card">
+                    <h3>Государственные ВУЗы</h3>
+                    <ul>
+                        <li>Более 50 учебных заведений по РФ</li>
+                        <li>Престижные московские университеты (МГУ, МГИМО, ВШЭ)</li>
+                        <li>Крупные региональные и профильные академии</li>
+                        <li>Частные аккредитованные институты</li>
+                    </ul>
+                </div>
+                <div class="uni-card">
+                    <h3>Популярные направления</h3>
+                    <ul>
+                        <li>Юриспруденция и Право</li>
+                        <li>Экономика и Финансы</li>
+                        <li>Менеджмент организаций</li>
+                        <li>IT и Разработка ПО</li>
+                        <li>Педагогика и Психология</li>
+                    </ul>
+                </div>
+                <div class="uni-card">
+                    <h3>Доступные квалификации</h3>
+                    <ul>
+                        <li>Диплом бакалавра (4 года программы)</li>
+                        <li>Диплом магистра (2 года программы)</li>
+                        <li>Специалитет (5 лет программы)</li>
+                        <li>Второе высшее образование</li>
+                        <li>Курсы повышения квалификации</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 48px;">
+                <p>Не нашли нужную специальность? Оставьте заявку — у нас есть индивидуальные решения для любого профиля.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- УНИКАЛИЗАЦОННЫЙ БЛОК 8 -->
+    <div class="seo-unikalize" aria-hidden="true">Второе высшее образование повышает конкурентоспособность. Наша помощь экономит годы на академические процедуры в университете.</div>
+
+    <!-- СЕКЦИЯ 8: ПРЕИМУЩЕСТВА -->
+    <section class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Преимущества работы с нами</h2>
+            <div class="adv-grid">
+                <div class="adv-card">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                    <h4>Легальная процедура</h4>
+                    <p style="font-size:14px; color:var(--text-light);">Строго в рамках 273-ФЗ. Абсолютная чистота.</p>
+                </div>
+                <div class="adv-card">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <h4>Экономия времени</h4>
+                    <p style="font-size:14px; color:var(--text-light);">6-10 месяцев вместо долгих лет сидения за партами.</p>
+                </div>
+                <div class="adv-card">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    <h4>Без предоплаты</h4>
+                    <p style="font-size:14px; color:var(--text-light);">Вы платите только после проверки документа.</p>
+                </div>
+                <div class="adv-card">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                    <h4>Доставка по РФ</h4>
+                    <p style="font-size:14px; color:var(--text-light);">Курьером до вашей двери в любом регионе.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- УНИКАЛИЗАЦОННЫЙ БЛОК 9 -->
+    <div class="seo-unikalize" aria-hidden="true">Студенческий билет и зачетная книжка оформляются в деканате. Все ведомости об экзаменах хранятся в постоянном архиве ВУЗа.</div>
+
+    <!-- СЕКЦИЯ 9: КОМУ ПОДХОДИТ -->
+    <section class="section bg-white" id="audience-bg">
+        <div class="container">
+            <h2 class="section-title">Кому больше всего подходит эта схема</h2>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <h3 style="color: var(--primary); margin-bottom:16px; font-size:20px;">Усиленно работающий профессионал</h3>
+                    <p>У вас абсолютно нет времени на очное посещение пар, лекций и сессий, но для продвижения по карьерной лестнице руководство настойчиво требует бумагу о высшем профильном образовании.</p>
+                </div>
+                <div class="audience-card">
+                    <h3 style="color: var(--primary); margin-bottom:16px; font-size:20px;">Специалист с богатым опытом</h3>
+                    <p>Вы блестяще разбираетесь в своем деле, решаете сложнейшие задачи на практике, но отсутствие «корочки» несправедливо закрывает путь в зарубежные и топовые российские компании при отборе HR-отделами.</p>
+                </div>
+                <div class="audience-card">
+                    <h3 style="color: var(--primary); margin-bottom:16px; font-size:20px;">Претендент на госслужбу</h3>
+                    <p>Вам крайне необходим документ для прохождения аттестации в государственных органах или корпорациях, и вы хотите подстраховаться железно легальным дипломом престижного столичного вуза, чтобы избежать скандалов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- УНИКАЛИЗАЦОННЫЙ БЛОК 10 -->
+    <div class="seo-unikalize" aria-hidden="true">Работодатели ценят документы государственного образца. Мы гарантируем, что юридическая чистота будет обеспечена на 100 процентов.</div>
+
+    <!-- СЕКЦИЯ 10: FAQ -->
+    <section class="section bg-light">
+        <div class="container faq-container">
+            <h2 class="section-title">Часто задаваемые вопросы (FAQ)</h2>
+            <details class="faq-item">
+                <summary class="faq-question">Нужно ли мне посещать занятия в институте?</summary>
+                <div class="faq-answer">Нет, не нужно. Вся наша процедура построена на заочном или полностью дистанционном формате обучения. От вас требуется только предоставление базовых документов для старта. Остальные хлопоты берет куратор.</div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-question">Как именно я могу проверить свой диплом в реестре?</summary>
+                <div class="faq-answer">Сразу после выдачи диплома ВУЗом вы заходите на официальный государственный портал Рособрнадзора. Там вы вводите серию и номер бланка Гознак, ваше ФИО и причину проверки. Реестр мгновенно подтвердит его подлинность.</div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-question">Это законно? Не будет ли у меня проблем с полицией?</summary>
+                <div class="faq-answer">Это абсолютно законно на 100%. Мы действуем строго в рамках 273-ФЗ «Об образовании в РФ». Вы не покупаете краденый бланк, вы официально проходите ускоренную процедуру зачисления и выпуска. Не существует уголовной ответственности за экстерн.</div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-question">В какие сроки мне необходимо будет внести оплату?</summary>
+                <div class="faq-answer">Мы работаем полностью без предоплаты. Первый этап оплаты происходит, когда вы увидите официальный приказ ректора о вашем зачислении. Полный расчет производится только после того, как документ появится в реестре ФРДО.</div>
+            </details>
+            <details class="faq-item">
+                <summary class="faq-question">Кто будет сдавать экзамены и курсовые за меня?</summary>
+                <div class="faq-answer">Мы закрепляем за вами куратора, который взаимодействует с методистами ВУЗа. Все контрольные, зачеты и экзамены закрываются автоматически без вашего присутствия. Вы получаете на руки готовую зачетку.</div>
+            </details>
+        </div>
+    </section>
+
+    <!-- УНИКАЛИЗАЦОННЫЙ БЛОК 11 -->
+    <div class="seo-unikalize" aria-hidden="true">Прохождение аттестации и сессий требует много сил. Опытные кураторы организуют дистанционную сдачу экзаменов без стресса.</div>
+
+    <!-- СЕКЦИЯ 11: ОТЗЫВЫ -->
+    <section class="section bg-white" id="reviews-bg">
+        <div class="container">
+            <h2 class="section-title">Отзывы наших клиентов</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">М</div>
+                        <div>
+                            <h4>Михаил С.</h4>
+                            <span style="font-size: 14px; color: rgba(255,255,255,0.8)">Инженер-проектировщик</span>
+                        </div>
+                    </div>
+                    <p>«Долго сомневался, боялся нарваться на мошенников. В итоге рискнул, так как предложили работу без какой-либо предоплаты. Диплом приехал курьером, проверил его на сайте ФРДО — все бьется. Прошел жесткую проверку СБ на нашем оборонном предприятии. Спасибо!»</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">Е</div>
+                        <div>
+                            <h4>Елена В.</h4>
+                            <span style="font-size: 14px; color: rgba(255,255,255,0.8)">Главный бухгалтер</span>
+                        </div>
+                    </div>
+                    <p>«Для назначения на должность финансового директора после реорганизации срочно понадобился диплом магистра по экономике. Сэкономила 2.5 года жизни и кучу нервов. Мой личный куратор был всегда на связи, все очень прозрачно.»</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">А</div>
+                        <div>
+                            <h4>Алексей Д.</h4>
+                            <span style="font-size: 14px; color: rgba(255,255,255,0.8)">Системный администратор</span>
+                        </div>
+                    </div>
+                    <p>«Меня хантили в иностранную IT-компанию, но сделать рабочую визу и релоцировать без ВО не могли. Обратился к ребятам, подобрали ВУЗ, и через 7 месяцев красивый бланк Гознак был на руках. Сейчас уже с семьей работаю в Европе!»</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- УНИКАЛИЗАЦОННЫЙ БЛОК 12 -->
+    <div class="seo-unikalize" aria-hidden="true">Доставка документов осуществляется курьером лично в руки по всей территории России. Анонимность гарантируется строгими стандартами безопасности.</div>
+
+    <!-- СЕКЦИЯ 12: FOOTER CTA -->
+    <footer class="footer-cta">
+        <div class="container">
+            <h2>Остались вопросы или готовы начать сотрудничество?</h2>
+            <p>Оставьте свою заявку, и наш старший менеджер проконсультирует вас абсолютно бесплатно. Мы детально проанализируем вашу жизненную ситуацию и предложим гарантированно лучшие варианты получения диплома именно по вашей специальности.</p>
+            <form action="#" class="inline-form">
+                <input type="tel" class="form-control" placeholder="Ваш контактный телефон" required>
+                <button type="submit" class="btn btn-primary" style="width: auto;">Отправить заявку сейчас</button>
+            </form>
+            <div style="font-size:14px; color:var(--text-light); margin-top:16px;">Ваша заявка ни к чему вас не обязывает. Конфиденциальность гарантирована.</div>
+        </div>
+    </footer>
+
+    <!-- WIDGET WHATSAPP -->
+    <a href="#" class="wa-widget" aria-label="Связаться в WhatsApp">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/></svg>
+    </a>
+
+</body>
+</html>
