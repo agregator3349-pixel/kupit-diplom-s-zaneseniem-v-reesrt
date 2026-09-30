@@ -50,6 +50,15 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
+        section,
+        .footer-cta {
+            scroll-margin-top: 80px;
+        }
+
         body {
             font-family: var(--font-family);
             color: var(--text-main);
@@ -762,6 +771,384 @@
             margin: 0 auto;
         }
 
+        /* ХЕДЕР И НАВИГАЦИЯ */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+            gap: 20px;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+            flex-shrink: 0;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--primary-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .logo-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text-main);
+            letter-spacing: -0.2px;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            color: var(--text-light);
+            line-height: 1.2;
+            font-weight: 400;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            padding: 6px 0;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.2s ease;
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-shrink: 0;
+        }
+
+        .header-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-light);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            display: inline-block;
+            box-shadow: 0 0 0 3px rgba(61, 184, 61, 0.25);
+        }
+
+        .header-cta-btn {
+            height: 40px;
+            padding: 0 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .burger-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .burger-btn:hover {
+            background: #EAEAEA;
+        }
+
+        .burger-btn span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--text-main);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .burger-btn.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .burger-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-btn.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Выпадающее мобильное меню */
+        .mobile-menu {
+            display: none;
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: max-height 0.35s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu-inner {
+            padding: 16px 24px 24px;
+        }
+
+        .mobile-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mobile-nav-link {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 15px;
+            font-weight: 500;
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: color 0.2s ease;
+        }
+
+        .mobile-nav-link:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-cta {
+            margin-top: 12px;
+        }
+
+        /* ОСНОВНОЙ ФУТЕР САЙТА */
+        .site-footer {
+            background: #141419;
+            color: #E2E2E8;
+            padding: 70px 0 32px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-top-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+            gap: 40px;
+            margin-bottom: 48px;
+        }
+
+        .footer-col-brand .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .footer-col-brand .logo-icon {
+            background: rgba(61, 59, 255, 0.25);
+            color: #7B79FF;
+        }
+
+        .footer-desc {
+            color: #9E9EA7;
+            font-size: 14px;
+            margin-bottom: 20px;
+            max-width: 320px;
+        }
+
+        .footer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #FFFFFF;
+            padding: 6px 14px;
+            border-radius: var(--radius-badge);
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--success);
+            border-radius: 50%;
+        }
+
+        .footer-col-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: #9E9EA7;
+            text-decoration: none;
+            transition: color 0.2s ease, transform 0.2s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: #FFFFFF;
+            transform: translateX(4px);
+        }
+
+        .footer-support-text {
+            color: #9E9EA7;
+            margin-bottom: 18px;
+        }
+
+        .footer-btn {
+            width: 100%;
+            height: 44px;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .footer-privacy-text {
+            display: block;
+            color: #70707B;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 30px;
+        }
+
+        .footer-bottom-info p {
+            margin: 0 0 8px;
+            color: #70707B;
+            font-size: 13px;
+        }
+
+        .footer-legal-notice {
+            max-width: 800px;
+            line-height: 1.5;
+        }
+
+        .back-to-top-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #9E9EA7;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .back-to-top-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .back-to-top-btn:hover {
+            color: #FFFFFF;
+            background: var(--primary);
+        }
+
         .floating-btn {
             position: fixed;
             bottom: 32px;
@@ -854,6 +1241,23 @@
         }
 
         @media (max-width: 1024px) {
+            .header-nav {
+                display: none;
+            }
+
+            .header-status {
+                display: none;
+            }
+
+            .burger-btn {
+                display: flex;
+            }
+
+            .footer-top-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 36px;
+            }
+
             .hero-container {
                 grid-template-columns: 1fr;
             }
@@ -893,6 +1297,25 @@
         @media (max-width: 768px) {
             .container {
                 padding: 0 16px;
+            }
+
+            .header-container {
+                height: 60px;
+            }
+
+            .header-cta-btn {
+                display: none;
+            }
+
+            .footer-top-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
             }
 
             .section {
@@ -1004,6 +1427,68 @@
     <div class="seo-unikalize" aria-hidden="true">Получение высшего образования дистанционно — это современный стандарт.
         Вы можете обучаться по ГОСТ прозрачно и легально.</div>
 
+    <!-- ХЕДЕР И НАВИГАЦИЯ -->
+    <header class="site-header" id="top">
+        <div class="container header-container">
+            <a href="#top" class="header-logo" aria-label="Главная страница">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ГосРеестр Образование</span>
+                    <span class="logo-subtitle">Официальное сопровождение 273-ФЗ</span>
+                </div>
+            </a>
+
+            <nav class="header-nav" id="headerNav">
+                <ul class="nav-list">
+                    <li><a href="#legal" class="nav-link">Легальность</a></li>
+                    <li><a href="#process" class="nav-link">Схема работы</a></li>
+                    <li><a href="#guarantees" class="nav-link">Гарантии</a></li>
+                    <li><a href="#universities-bg" class="nav-link">ВУЗы</a></li>
+                    <li><a href="#faq" class="nav-link">FAQ</a></li>
+                    <li><a href="#reviews-bg" class="nav-link">Отзывы</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <div class="header-status">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Приём заявок 24/7</span>
+                </div>
+                <button class="btn btn-primary header-cta-btn" id="headerCtaBtn">Консультация</button>
+                <button class="burger-btn" id="burgerBtn" aria-label="Открыть меню">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Мобильное выпадающее меню -->
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-inner">
+                <ul class="mobile-nav-list">
+                    <li><a href="#legal" class="mobile-nav-link">Легальность и ФИС ФРДО</a></li>
+                    <li><a href="#process" class="mobile-nav-link">Пошаговая схема работы</a></li>
+                    <li><a href="#comparison-bg" class="mobile-nav-link">Сравнение с подделками</a></li>
+                    <li><a href="#guarantees" class="mobile-nav-link">Гарантии и безопасность</a></li>
+                    <li><a href="#universities-bg" class="mobile-nav-link">Каталог ВУЗов</a></li>
+                    <li><a href="#advantages" class="mobile-nav-link">Преимущества ускорения</a></li>
+                    <li><a href="#faq" class="mobile-nav-link">Вопросы и ответы (FAQ)</a></li>
+                    <li><a href="#reviews-bg" class="mobile-nav-link">Отзывы выпускников</a></li>
+                    <li><a href="#contacts" class="mobile-nav-link">Оставить заявку</a></li>
+                </ul>
+                <div class="mobile-menu-cta">
+                    <button class="btn btn-primary" id="mobileCtaBtn" style="width: 100%;">Подобрать ВУЗ</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
     <!-- СЕКЦИЯ 1: HERO -->
     <section class="hero" id="hero-bg">
         <div class="container hero-container">
@@ -1052,7 +1537,7 @@
         работодателем в единой информационной системе подтверждает статус ВУЗа.</div>
 
     <!-- СЕКЦИЯ 2: ЛЕГАЛЬНОСТЬ -->
-    <section class="section bg-light">
+    <section class="section bg-light" id="legal">
         <div class="container">
             <h2 class="section-title">Что такое диплом с занесением в реестр и почему это законно</h2>
             <p class="section-subtitle">Полное юридическое обоснование нашей работы в соответствии с законодательством
@@ -1124,7 +1609,7 @@
         Вы получаете справки, которые подтверждают статус студента.</div>
 
     <!-- СЕКЦИЯ 4: КАК ЭТО РАБОТАЕТ -->
-    <section class="section bg-light">
+    <section class="section bg-light" id="process">
         <div class="container">
             <h2 class="section-title">Как это работает: пошаговая схема получения диплома</h2>
             <p class="section-subtitle">Весь процесс абсолютно прозрачен и разбит на понятные для вас этапы.</p>
@@ -1241,7 +1726,7 @@
         обучение по аккредитованной программе снимает все вопросы.</div>
 
     <!-- СЕКЦИЯ 6: ГАРАНТИИ И БЕЗОПАСНОСТЬ -->
-    <section class="section bg-light">
+    <section class="section bg-light" id="guarantees">
         <div class="container">
             <h2 class="section-title">Гарантии и безопасность: как мы защищаем ваши интересы</h2>
             <div class="guarantees-grid">
@@ -1349,7 +1834,7 @@
         экономит годы на академические процедуры в университете.</div>
 
     <!-- СЕКЦИЯ 8: ПРЕИМУЩЕСТВА -->
-    <section class="section bg-light">
+    <section class="section bg-light" id="advantages">
         <div class="container">
             <h2 class="section-title">Преимущества работы с нами</h2>
             <div class="adv-grid">
@@ -1430,7 +1915,7 @@
         что юридическая чистота будет обеспечена на 100 процентов.</div>
 
     <!-- СЕКЦИЯ 10: FAQ -->
-    <section class="section bg-light">
+    <section class="section bg-light" id="faq">
         <div class="container faq-container">
             <h2 class="section-title">Часто задаваемые вопросы (FAQ)</h2>
             <details class="faq-item">
@@ -1519,8 +2004,8 @@
     <div class="seo-unikalize" aria-hidden="true">Доставка документов осуществляется курьером лично в руки по всей
         территории России. Анонимность гарантируется строгими стандартами безопасности.</div>
 
-    <!-- СЕКЦИЯ 12: FOOTER CTA -->
-    <footer class="footer-cta">
+    <!-- СЕКЦИЯ 12: CTA БЛОК -->
+    <section class="section footer-cta" id="contacts">
         <div class="container">
             <h2>Остались вопросы или готовы начать сотрудничество?</h2>
             <p>Оставьте свою заявку, и наш старший менеджер проконсультирует вас абсолютно бесплатно. Мы детально
@@ -1533,6 +2018,85 @@
             <div class="form-msg" style="font-weight: 500; font-size: 14px; margin-top: 8px;"></div>
             <div style="font-size:14px; color:var(--text-light); margin-top:16px;">Ваша заявка ни к чему вас не
                 обязывает. Конфиденциальность гарантирована.</div>
+        </div>
+    </section>
+
+    <!-- ОСНОВНОЙ ФУТЕР -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top-grid">
+                <!-- Колонка 1: Бренд и миссия -->
+                <div class="footer-col footer-col-brand">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                            </svg>
+                        </div>
+                        <div class="logo-text">
+                            <span class="logo-title" style="color: #FFFFFF;">ГосРеестр Образование</span>
+                            <span class="logo-subtitle" style="color: #9E9EA7;">Сопровождение по 273-ФЗ</span>
+                        </div>
+                    </div>
+                    <p class="footer-desc">
+                        Официальное сопровождение студентов по ускоренным и дистанционным программам аккредитованных ВУЗов. Внесение в ФИС ФРДО, бланки Гознак, оплата по факту проверки.
+                    </p>
+                    <div class="footer-badge">
+                        <span class="badge-dot"></span> 100% законно по 273-ФЗ РФ
+                    </div>
+                </div>
+
+                <!-- Колонка 2: О программе -->
+                <div class="footer-col">
+                    <h4 class="footer-col-title">О программе</h4>
+                    <ul class="footer-links">
+                        <li><a href="#legal">Законность и ФИС ФРДО</a></li>
+                        <li><a href="#process">Пошаговая схема</a></li>
+                        <li><a href="#comparison-bg">Сравнение схем</a></li>
+                        <li><a href="#guarantees">Договор и гарантии</a></li>
+                        <li><a href="#universities-bg">Каталог ВУЗов</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 3: Клиентам -->
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Клиентам</h4>
+                    <ul class="footer-links">
+                        <li><a href="#advantages">Преимущества ускорения</a></li>
+                        <li><a href="#audience-bg">Кому подходит</a></li>
+                        <li><a href="#faq">Ответы на вопросы (FAQ)</a></li>
+                        <li><a href="#reviews-bg">Отзывы выпускников</a></li>
+                        <li><a href="#contacts">Подать заявку на проверку</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 4: Поддержка и кураторы -->
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Консультации</h4>
+                    <p class="footer-support-text">
+                        Персональный куратор доступен ежедневно 24/7. Подбор ВУЗа и расчет сроков бесплатны.
+                    </p>
+                    <button class="btn btn-primary footer-btn" id="footerCtaBtn">Заказать звонок куратора</button>
+                    <span class="footer-privacy-text">Конфиденциальность 100% гарантирована</span>
+                </div>
+            </div>
+
+            <!-- Нижняя панель с копирайтом и юридической информацией -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-info">
+                    <p>© 2026 ГосРеестр Образование. Все права защищены.</p>
+                    <p class="footer-legal-notice">
+                        Вся процедура зачисления, прохождения аттестации и выдачи дипломов государственного образца осуществляется государственными и аккредитованными негосударственными высшими учебными заведениями в соответствии со ст. 34 и ст. 59 Федерального закона № 273-ФЗ «Об образовании в Российской Федерации».
+                    </p>
+                </div>
+                <a href="#top" class="back-to-top-btn" aria-label="Вернуться наверх">
+                    <span>Наверх</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 19V5M5 12l7-7 7 7"></path>
+                    </svg>
+                </a>
+            </div>
         </div>
     </footer>
 
@@ -1567,21 +2131,56 @@
         const modal = document.getElementById('contactModal');
         const openBtn = document.getElementById('openModalBtn');
         const closeBtn = document.getElementById('closeModalBtn');
+        const headerCtaBtn = document.getElementById('headerCtaBtn');
+        const mobileCtaBtn = document.getElementById('mobileCtaBtn');
+        const footerCtaBtn = document.getElementById('footerCtaBtn');
 
-        openBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            modal.classList.add('active');
-        });
-
-        closeBtn.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
+        const openModal = (e) => {
+            if (e) e.preventDefault();
+            const burgerBtn = document.getElementById('burgerBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu && burgerBtn) {
+                burgerBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
             }
-        });
+            if (modal) modal.classList.add('active');
+        };
+
+        if (openBtn) openBtn.addEventListener('click', openModal);
+        if (headerCtaBtn) headerCtaBtn.addEventListener('click', openModal);
+        if (mobileCtaBtn) mobileCtaBtn.addEventListener('click', openModal);
+        if (footerCtaBtn) footerCtaBtn.addEventListener('click', openModal);
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+        }
+
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        }
+
+        // Логика мобильного бургер-меню
+        const burgerBtn = document.getElementById('burgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (burgerBtn && mobileMenu) {
+            burgerBtn.addEventListener('click', () => {
+                burgerBtn.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    burgerBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                });
+            });
+        }
 
         // Логика отправки форм
         const googleAppUrl = 'https://script.google.com/macros/s/AKfycbzyFOBS6pyO9t8aYt8qaCKtpu7ZZS1BITuDr5nA9HCskI4Kd3GY4RaP5PQw-xVevKA6wA/exec';
