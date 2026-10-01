@@ -50,6 +50,12 @@
             box-sizing: border-box;
         }
 
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: clip;
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -65,6 +71,12 @@
             background-color: var(--bg-white);
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, p, a, span, li {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
 
         .container {
@@ -455,7 +467,11 @@
 
         /* Секция 5: COMPARISON */
         .table-responsive {
+            width: 100%;
+            max-width: 100%;
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            display: block;
             border-radius: var(--radius-card);
             box-shadow: var(--shadow-l1);
             background: var(--bg-white);
@@ -1297,10 +1313,13 @@
         @media (max-width: 768px) {
             .container {
                 padding: 0 16px;
+                max-width: 100%;
+                overflow-x: hidden;
             }
 
             .header-container {
                 height: 60px;
+                padding: 0 16px;
             }
 
             .header-cta-btn {
@@ -1327,8 +1346,8 @@
             }
 
             .hero-content h1 {
-                font-size: 36px;
-                line-height: 42px;
+                font-size: 34px;
+                line-height: 40px;
             }
 
             .section-title {
@@ -1342,10 +1361,54 @@
             .audience-grid,
             .reviews-grid {
                 grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .guarantee-card {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 24px 20px;
+                gap: 16px;
+            }
+
+            .guarantee-icon {
+                width: 52px;
+                height: 52px;
+                border-radius: 12px;
+            }
+
+            .guarantee-icon svg {
+                width: 28px;
+                height: 28px;
+            }
+
+            .legal-card,
+            .situation-item,
+            .step-content,
+            .uni-card,
+            .audience-card,
+            .review-card,
+            .lead-form-card {
+                padding: 24px 18px;
+            }
+
+            .quote-box {
+                padding: 20px 18px;
+                font-size: 16px;
+            }
+
+            .faq-question {
+                padding: 20px 18px;
+                font-size: 16px;
+            }
+
+            .faq-answer {
+                padding: 0 18px 20px;
+                font-size: 15px;
             }
 
             .process-line {
-                left: 50px;
+                display: none;
             }
 
             .process-step {
@@ -1359,6 +1422,15 @@
 
             .inline-form {
                 flex-direction: column;
+                width: 100%;
+            }
+
+            .inline-form input {
+                width: 100%;
+            }
+
+            .inline-form button {
+                width: 100% !important;
             }
 
             .adv-grid {
