@@ -20,13 +20,14 @@
             const loc = window.location;
             const currentHost = loc.hostname;
             const rawPath = loc.pathname;
-            const needsHttps = loc.protocol === 'http:' && (currentHost === 'digamels.ru' || currentHost.endsWith('.github.io'));
+            // Автоматический редирект с любого технического адреса (github.io), www или http на основной HTTPS-домен
+            if (currentHost.endsWith('.github.io') || currentHost === 'www.digamels.ru' || (loc.protocol === 'http:' && currentHost === 'digamels.ru')) {
+                loc.replace('https://digamels.ru/' + loc.search + loc.hash);
+                return;
+            }
             const hasIndexSuffix = rawPath.endsWith('/index.html') || rawPath === '/index.html';
-            const normalizedPath = hasIndexSuffix ? (rawPath.replace(/\/index\.html$/, '') || '/') : rawPath;
-
-            if (needsHttps) {
-                loc.replace('https://' + currentHost + normalizedPath + loc.search + loc.hash);
-            } else if (hasIndexSuffix && window.history && window.history.replaceState) {
+            if (hasIndexSuffix && window.history && window.history.replaceState) {
+                const normalizedPath = rawPath.replace(/\/index\.html$/, '') || '/';
                 window.history.replaceState(null, '', normalizedPath + loc.search + loc.hash);
             }
         })();
