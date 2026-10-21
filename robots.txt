@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Disallow: /*?*
+Disallow: /*.docx$
+Disallow: /*.txt$
+Allow: /robots.txt
+Allow: /media/
+
+User-agent: Yandex
+Allow: /
+Disallow: /*?*
+Disallow: /*.docx$
+Disallow: /*.txt$
+Allow: /robots.txt
+Allow: /media/
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&gclid&fbclid /
+
+Sitemap: https://digamels.ru/sitemap.xml
+Host: https://digamels.ru

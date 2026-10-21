@@ -6,21 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Купить диплом с занесением в реестр: легальная процедура c гарантией</title>
     <meta name="description" content="Академический центр сопровождения ускоренного обучения по индивидуальному учебному плану (ст. 34 № 273-ФЗ). Официальная регистрация в ФИС ФРДО, расчет после проверки.">
-    <link rel="canonical" href="https://inter-kids.ru/">
+    <link rel="canonical" href="https://digamels.ru/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="РЕЕСТР.ВУЗ">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:title" content="Купить диплом с занесением в реестр: легальная процедура c гарантией">
     <meta property="og:description" content="Ускоренное дистанционное освоение программ в аккредитованных вузах РФ со 100% регистрацией в федеральной базе Рособрнадзора.">
-    <meta property="og:url" content="https://inter-kids.ru/">
-    <meta property="og:image" content="https://inter-kids.ru/media/campus-atrium.jpg">
+    <meta property="og:url" content="https://digamels.ru/">
+    <meta property="og:image" content="https://digamels.ru/media/campus-atrium.jpg">
 
     <script>
         (function () {
             const loc = window.location;
             const currentHost = loc.hostname;
             const rawPath = loc.pathname;
-            const needsHttps = loc.protocol === 'http:' && (currentHost === 'inter-kids.ru' || currentHost.endsWith('.github.io'));
+            const needsHttps = loc.protocol === 'http:' && (currentHost === 'digamels.ru' || currentHost.endsWith('.github.io'));
             const hasIndexSuffix = rawPath.endsWith('/index.html') || rawPath === '/index.html';
             const normalizedPath = hasIndexSuffix ? (rawPath.replace(/\/index\.html$/, '') || '/') : rawPath;
 
@@ -42,8 +42,8 @@
       "@context": "https://schema.org",
       "@type": "EducationalOrganization",
       "name": "Академия ускоренного высшего образования РЕЕСТР.ВУЗ",
-      "url": "https://inter-kids.ru/",
-      "logo": "https://inter-kids.ru/media/brand-crest.jpg",
+      "url": "https://digamels.ru/",
+      "logo": "https://digamels.ru/media/brand-crest.jpg",
       "description": "Юридическое и методическое сопровождение ускоренного обучения по индивидуальному учебному плану согласно ст. 34 ФЗ № 273."
     }
     </script>
@@ -99,7 +99,7 @@
         }
 
         section {
-            scroll-margin-top: 84px;
+            scroll-margin-top: 96px;
         }
 
         /* УТИЛИТАРНЫЕ КЛАССЫ */
@@ -294,18 +294,20 @@
             background: var(--ed-orange);
         }
 
-        /* ПЕРВЫЙ ЭКРАН С ПЛАВАЮЩИМ ХЕДЕРОМ И ПИЛЛАМИ ВНИЗУ (#top_blog) */
-        .hero-island {
-            position: relative;
-            min-height: 700px;
+        /* ЗАКРЕПЛЁННАЯ ШАПКА (#mainHeader) */
+        .site-header-sticky {
+            position: sticky;
+            top: 8px;
+            z-index: 500;
             border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 36px 40px 44px;
-            background: linear-gradient(180deg, rgba(32, 27, 27, 0.62) 0%, rgba(32, 27, 27, 0.50) 50%, rgba(32, 27, 27, 0.78) 100%),
-                        url('media/campus-atrium.jpg') center/cover no-repeat;
-            color: var(--ed-white);
+            background: rgba(32, 27, 27, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            padding: 12px 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+            transition: background 0.25s ease, box-shadow 0.25s ease;
         }
 
         .top_header {
@@ -316,6 +318,22 @@
             justify-content: space-between;
             gap: 16px;
             width: 100%;
+        }
+
+        /* ПЕРВЫЙ ЭКРАН С БАННЕРОМ И ПИЛЛАМИ ВНИЗУ (#top_blog) */
+        .hero-island {
+            position: relative;
+            min-height: 560px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 36px;
+            padding: 56px 40px 48px;
+            background: linear-gradient(180deg, rgba(32, 27, 27, 0.65) 0%, rgba(32, 27, 27, 0.52) 50%, rgba(32, 27, 27, 0.78) 100%),
+                        url('media/campus-atrium.jpg') center/cover no-repeat;
+            color: var(--ed-white);
         }
 
         .left_header {
@@ -1682,10 +1700,16 @@
                 padding: 11px 16px;
             }
 
+            .site-header-sticky {
+                top: 6px;
+                padding: 10px 14px;
+                margin-bottom: 12px;
+            }
+
             .hero-island {
                 min-height: auto;
-                padding: 18px 16px 24px;
-                gap: 28px;
+                padding: 28px 16px 24px;
+                gap: 20px;
             }
 
             .top_header {
@@ -1934,9 +1958,9 @@
         </ul>
     </div>
 
-    <!-- ПЕРВЫЙ ЭКРАН (#top_blog) -->
-    <section id="top_blog" class="hero-island mb-20">
-        <header class="top_header">
+    <!-- ЗАКРЕПЛЁННАЯ ШАПКА САЙТА -->
+    <header class="site-header-sticky" id="mainHeader">
+        <div class="top_header">
             <div class="left_header">
                 <button type="button" class="gamburg-btn" id="openMenuBtn" aria-label="Открыть меню">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1962,8 +1986,11 @@
                     </svg>
                 </button>
             </div>
-        </header>
+        </div>
+    </header>
 
+    <!-- ПЕРВЫЙ ЭКРАН (#top_blog) -->
+    <section id="top_blog" class="hero-island mb-20">
         <div class="hero-center">
             <span class="hero-center__badge">Федеральный регламент ст. 34 № 273-ФЗ РФ</span>
             <h1 class="hero-center__title">Купить диплом с занесением в реестр: легальная процедура за 6–10 месяцев</h1>
